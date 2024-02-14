@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster:regular&display=swap");
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+html,
+body {
+  line-height: 1;
+  height: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  color: inherit;
+  background-color: transparent;
+}
+
+button,
+select,
+option {
+  cursor: pointer;
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+body {
+  color: #cb108c;
+  font-family: "Lobster", serif;
+}
+
+[class*=__container] {
+  max-width: 1330px;
+  margin: 0 auto;
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem;
+}
+
+.wrapper {
+  overflow: clip;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: url("../img/background.webp") repeat center/25rem;
+}
+.page__container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  margin-bottom: 0.4em;
+  padding: 0.625rem;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  text-align: center;
+  transition: all 0.3s;
+  transform: scale(0);
+}
+@media (min-width: 83.125em) {
+  .message {
+    font-size: 3.125rem;
+  }
+}
+@media (min-width: 20em) and (max-width: 83.125em) {
+  @supports (font-size: clamp( 1.875rem , 1.478960396rem  +  1.9801980198vw , 3.125rem )) {
+    .message {
+      font-size: clamp( 1.875rem , 1.478960396rem  +  1.9801980198vw , 3.125rem );
+    }
+  }
+  @supports not (font-size: clamp( 1.875rem , 1.478960396rem  +  1.9801980198vw , 3.125rem )) {
+    .message {
+      font-size: calc(1.875rem + 1.25 * (100vw - 20rem) / 63.125);
+    }
+  }
+}
+@media (max-width: 20em) {
+  .message {
+    font-size: 1.875rem;
+  }
+}
+.message--show {
+  transform: scale(1);
+}
+
+.envelope {
+  background: url("../img/envelope/back.webp") no-repeat center/contain;
+  aspect-ratio: 528/587;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: 3.125rem 0;
+  animation: zoom 2s linear infinite alternate;
+}
+.envelope--closed {
+  background: url("../img/envelope/closed.webp") no-repeat center/contain;
+}
+.envelope--opened {
+  background: url("../img/envelope/opened.webp") no-repeat center/contain;
+}
+@media (min-width: 48em) {
+  .envelope {
+    width: 60%;
+  }
+}
+.envelope--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.slava {
+  position: absolute;
+  background: url("../img/slava/warning.webp") no-repeat center/contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 667/1504;
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+@media (min-width: 83.125em) {
+  .slava {
+    width: 12.5rem;
+  }
+}
+@media (min-width: 20em) and (max-width: 83.125em) {
+  @supports (width: clamp( 9.375rem , 8.3849009901rem  +  4.9504950495vw , 12.5rem )) {
+    .slava {
+      width: clamp( 9.375rem , 8.3849009901rem  +  4.9504950495vw , 12.5rem );
+    }
+  }
+  @supports not (width: clamp( 9.375rem , 8.3849009901rem  +  4.9504950495vw , 12.5rem )) {
+    .slava {
+      width: calc(9.375rem + 3.125 * (100vw - 20rem) / 63.125);
+    }
+  }
+}
+@media (max-width: 20em) {
+  .slava {
+    width: 9.375rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9375rem;
+  align-self: stretch;
+  transition: all 0.3s;
+  transform: scale(0);
+}
+.buttons--show {
+  transform: scale(1);
+}
+
+.button {
+  position: relative;
+  flex-grow: 1;
+  background-color: #fff;
+  padding: 0.9375rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  min-width: 6.25rem;
+  font-size: 1.5625rem;
+  transition: opacity 1s;
+}
+.button::before, .button::after {
+  content: "";
+  aspect-ratio: 1/1;
+  height: 80%;
+  top: 50%;
+  max-width: 20%;
+  transform: translateY(-50%);
+  position: absolute;
+  background: url("../img/buttons/heart.svg") no-repeat center/contain;
+}
+.button::before {
+  left: 10%;
+  animation: rotation-left 3s infinite linear;
+}
+.button::after {
+  right: 10%;
+  animation: rotation-right 3s infinite linear;
+}
+@media (any-hover: hover) {
+  .button:hover {
+    background-color: #cb108c;
+    color: #fff;
+  }
+}
+@media not (any-hover: hover) {
+  .button:focus {
+    background-color: #cb108c;
+    color: #fff;
+  }
+}
+.button--no::before, .button--no::after {
+  background: url("../img/buttons/penis.svg") no-repeat center/contain;
+}
+@media (any-hover: hover) {
+  .button--no:hover {
+    background-color: #212020;
+    color: #fff;
+  }
+}
+@media not (any-hover: hover) {
+  .button--no:focus {
+    background-color: #212020;
+    color: #fff;
+  }
+}
+
+@keyframes rotation-left {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+@keyframes rotation-right {
+  to {
+    transform: translateY(-50%) rotate(-360deg);
+  }
+}
+@keyframes zoom {
+  to {
+    transform: scale(1.05);
+  }
+}
+.yes-img {
+  aspect-ratio: 960/920;
+  object-fit: contain;
+  max-width: 50%;
+  display: none;
+}

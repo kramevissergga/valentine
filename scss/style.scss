@@ -1,0 +1,191 @@
+@use "sass:math";
+
+$minWidth: 320;
+$maxWidth: 1920;
+$maxWidthContainer: 1300;
+$containerPadding: 30;
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+$pinkColor: #cb108c;
+
+@import "_reset.scss";
+@import "_fonts.scss";
+@import "_functions.scss";
+
+body {
+  color: $pinkColor;
+  font-family: "Lobster", serif;
+}
+
+[class*="__container"] {
+  max-width: #{$containerWidth}px;
+  margin: 0 auto;
+  padding-left: toRem(15);
+  padding-right: toRem(15);
+}
+
+.wrapper {
+  overflow: clip;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: url("../img/background.webp") repeat center / toRem(400);
+  &__container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.message {
+  @include adaptiveValue("font-size", 50, 30);
+  margin-bottom: toEm(20, 50);
+  padding: toRem(10);
+  background-color: #fff;
+  border-radius: toRem(12);
+  text-align: center;
+  transition: all 0.3s;
+  transform: scale(0);
+  &--show {
+    transform: scale(1);
+  }
+}
+
+.envelope {
+  background: url("../img/envelope/back.webp") no-repeat center / contain;
+  &--closed {
+    background: url("../img/envelope/closed.webp") no-repeat center / contain;
+  }
+  &--opened {
+    background: url("../img/envelope/opened.webp") no-repeat center / contain;
+  }
+  aspect-ratio: 528/587;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin: toRem(50) 0;
+  animation: zoom 2s linear infinite alternate;
+  @media (min-width: toEm(768)) {
+    width: 60%;
+  }
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.slava {
+  position: absolute;
+  background: url("../img/slava/warning.webp") no-repeat center / contain;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include adaptiveValue("width", 200, 150);
+  aspect-ratio: 667/1504;
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: toRem(15);
+  align-self: stretch;
+  transition: all 0.3s;
+  transform: scale(0);
+  &--show {
+    transform: scale(1);
+  }
+}
+.button {
+  position: relative;
+  flex-grow: 1;
+  background-color: #fff;
+  padding: toRem(15);
+
+  text-align: center;
+  border-radius: toRem(8);
+  min-width: toRem(100);
+  font-size: toRem(25);
+  transition: opacity 1s;
+  &::before,
+  &::after {
+    content: "";
+    aspect-ratio: 1/1;
+    height: 80%;
+    top: 50%;
+    max-width: 20%;
+    transform: translateY(-50%);
+    position: absolute;
+    background: url("../img/buttons/heart.svg") no-repeat center / contain;
+  }
+  &::before {
+    left: 10%;
+    animation: rotation-left 3s infinite linear;
+  }
+  &::after {
+    right: 10%;
+    animation: rotation-right 3s infinite linear;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: $pinkColor;
+      color: #fff;
+    }
+  }
+  @media not (any-hover: hover) {
+    &:focus {
+      background-color: $pinkColor;
+      color: #fff;
+    }
+  }
+
+  &--no {
+    &::before,
+    &::after {
+      background: url("../img/buttons/penis.svg") no-repeat center / contain;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: #212020;
+        color: #fff;
+      }
+    }
+    @media not (any-hover: hover) {
+      &:focus {
+        background-color: #212020;
+        color: #fff;
+      }
+    }
+  }
+}
+
+@keyframes rotation-left {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+@keyframes rotation-right {
+  to {
+    transform: translateY(-50%) rotate(-360deg);
+  }
+}
+
+@keyframes zoom {
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.yes-img {
+  aspect-ratio: 960/920;
+  object-fit: contain;
+  max-width: 50%;
+  display: none;
+}
