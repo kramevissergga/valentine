@@ -107,9 +107,30 @@ body {
   align-items: center;
   justify-content: center;
 }
+@media (min-width: 83.125em) {
+  .page__container {
+    gap: 3.125rem;
+  }
+}
+@media (min-width: 20em) and (max-width: 83.125em) {
+  @supports (gap: clamp( 1.25rem , 0.6559405941rem  +  2.9702970297vw , 3.125rem )) {
+    .page__container {
+      gap: clamp( 1.25rem , 0.6559405941rem  +  2.9702970297vw , 3.125rem );
+    }
+  }
+  @supports not (gap: clamp( 1.25rem , 0.6559405941rem  +  2.9702970297vw , 3.125rem )) {
+    .page__container {
+      gap: calc(1.25rem + 1.875 * (100vw - 20rem) / 63.125);
+    }
+  }
+}
+@media (max-width: 20em) {
+  .page__container {
+    gap: 1.25rem;
+  }
+}
 
 .message {
-  margin-bottom: 0.4em;
   padding: 0.625rem;
   background-color: #fff;
   border-radius: 0.75rem;
@@ -141,6 +162,7 @@ body {
 }
 .message--show {
   transform: scale(1);
+  animation: zoom 2s linear infinite alternate 1.5s;
 }
 
 .envelope {
@@ -149,7 +171,6 @@ body {
   width: 100%;
   cursor: pointer;
   transition: all 0.3s;
-  margin: 3.125rem 0;
   animation: zoom 2s linear infinite alternate;
 }
 .envelope--closed {
@@ -169,15 +190,11 @@ body {
 }
 
 .slava {
-  position: absolute;
   background: url("../img/slava/warning.webp") no-repeat center/contain;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   aspect-ratio: 667/1504;
   transition: all 0.3s;
-  opacity: 0;
-  visibility: hidden;
+  display: none;
+  animation: zoom 2s linear infinite alternate 0.5s;
 }
 @media (min-width: 83.125em) {
   .slava {
@@ -255,6 +272,9 @@ body {
     color: #fff;
   }
 }
+.button--no {
+  animation: zoom 2s linear infinite alternate 1s;
+}
 .button--no::before, .button--no::after {
   background: url("../img/buttons/penis.svg") no-repeat center/contain;
 }
@@ -270,6 +290,9 @@ body {
     color: #fff;
   }
 }
+.button--yes {
+  animation: zoom 2s linear infinite alternate 2s;
+}
 
 @keyframes rotation-left {
   to {
@@ -283,12 +306,18 @@ body {
 }
 @keyframes zoom {
   to {
-    transform: scale(1.05);
+    transform: scale(0.9);
   }
 }
 .yes-img {
   aspect-ratio: 960/920;
   object-fit: contain;
-  max-width: 50%;
+  max-width: 60%;
   display: none;
+  animation: zoom 2s linear infinite alternate;
+}
+@media (max-width: 48em) {
+  .yes-img {
+    max-width: 100%;
+  }
 }

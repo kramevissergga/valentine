@@ -38,6 +38,7 @@ body {
   &__container {
     flex-grow: 1;
     display: flex;
+    @include adaptiveValue("gap", 50, 20);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -46,7 +47,6 @@ body {
 
 .message {
   @include adaptiveValue("font-size", 50, 30);
-  margin-bottom: toEm(20, 50);
   padding: toRem(10);
   background-color: #fff;
   border-radius: toRem(12);
@@ -55,6 +55,7 @@ body {
   transform: scale(0);
   &--show {
     transform: scale(1);
+    animation: zoom 2s linear infinite alternate 1.5s;
   }
 }
 
@@ -70,7 +71,6 @@ body {
   width: 100%;
   cursor: pointer;
   transition: all 0.3s;
-  margin: toRem(50) 0;
   animation: zoom 2s linear infinite alternate;
   @media (min-width: toEm(768)) {
     width: 60%;
@@ -81,16 +81,12 @@ body {
   }
 }
 .slava {
-  position: absolute;
   background: url("../img/slava/warning.webp") no-repeat center / contain;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   @include adaptiveValue("width", 200, 150);
   aspect-ratio: 667/1504;
   transition: all 0.3s;
-  opacity: 0;
-  visibility: hidden;
+  display: none;
+  animation: zoom 2s linear infinite alternate 0.5s;
 }
 .buttons {
   display: flex;
@@ -163,6 +159,10 @@ body {
         color: #fff;
       }
     }
+    animation: zoom 2s linear infinite alternate 1s;
+  }
+  &--yes {
+    animation: zoom 2s linear infinite alternate 2s;
   }
 }
 
@@ -179,13 +179,18 @@ body {
 
 @keyframes zoom {
   to {
-    transform: scale(1.05);
+    transform: scale(0.9);
   }
 }
 
 .yes-img {
   aspect-ratio: 960/920;
   object-fit: contain;
-  max-width: 50%;
+  max-width: 60%;
+  @media (max-width: toEm(768)) {
+    max-width: 100%;
+  }
+
   display: none;
+  animation: zoom 2s linear infinite alternate;
 }

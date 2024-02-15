@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function hideEnvelope() {
-    envelopeEl.classList.add(`envelope--hidden`);
+    envelopeEl.style.display = "none";
   }
 
   function removeModifiers(element) {
@@ -76,8 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function showSlava() {
     document.body.classList.add("motion");
     messageEl.innerText = `Не шути зо мнов, ослепе`;
-    slavaEl.style.visibility = "visible";
-    slavaEl.style.opacity = "1";
+    slavaEl.style.display = "block";
     setTimeout(function () {
       messageEl.innerText = `Будеш мойов валентинков?`;
     }, 2000);
@@ -87,8 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function slavaAttack() {
     document.body.classList.add("motion");
-    slavaEl.style.visibility = "visible";
-    slavaEl.style.opacity = "1";
+    slavaEl.style.display = "block";
     slavaEl.style.backgroundImage = 'url("img/slava/attack.webp")';
     messageEl.innerText = `Бога ти с тов кнопков`;
     const noButton = document.querySelector(".button--no");
